@@ -1,0 +1,4 @@
+.terraform.lock.hcl
+.terraform/
+blez*
+main.tf_back
