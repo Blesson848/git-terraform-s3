@@ -87,3 +87,20 @@ resource "aws_instance" "backend" {
 }
 
 
+#--------------------------------------------------
+# EIP
+#--------------------------------------------------
+
+resource "aws_eip" "backend" {
+  instance = aws_instance.backend.id
+  domain   = "vpc"
+}
+
+resource "aws_route53_record" "backend" {
+  zone_id = data.aws_route53_zone.selected.id
+  name    = "${var.public_hostname}.${var.domain}"
+  type    = "A"
+  ttl     = 30
+  records = [aws_eip.backend.public_ip]
+}
+

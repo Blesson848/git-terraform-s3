@@ -29,3 +29,10 @@ variable "public_hostname" {
   type        = string
   description = "public_hostname"
 }
+
+
+variable "domain" {
+  type        = string
+  description = "my domain"
+}
+
