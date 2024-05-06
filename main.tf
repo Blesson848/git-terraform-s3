@@ -61,6 +61,15 @@ resource "aws_security_group_rule" "backend_ssh_access" {
 }
 
 
+resource "aws_security_group_rule" "backend_monitoring_access" {
+
+  type              = "ingress"
+  from_port         = 9090
+  to_port           = 9090
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.backend_access.id
+}
 
 
 
