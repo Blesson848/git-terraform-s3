@@ -60,3 +60,30 @@ resource "aws_security_group_rule" "backend_ssh_access" {
   security_group_id = aws_security_group.backend_access.id
 }
 
+
+
+
+
+#--------------------------------------------------
+# Backend server
+#--------------------------------------------------
+
+resource "aws_instance" "backend" {
+
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.key_pair.id
+  vpc_security_group_ids = [aws_security_group.backend_access.id]
+  user_data              = file("user.sh")
+
+  tags = {
+
+    Name = "${var.project_name}-${var.project_env}-backend"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
