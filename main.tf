@@ -11,6 +11,7 @@ resource "aws_key_pair" "key_pair" {
   tags = {
 
     Name = "${var.project_name}-${var.project_env}-key"
+    Owner = "Blesson"
   }
 }
 
@@ -27,7 +28,7 @@ resource "aws_security_group" "backend_access" {
 
   tags = {
     Name = "${var.project_name}-${var.project_env}-backend"
-
+    Owner = "Blesson"
   }
 
   egress {
@@ -88,6 +89,7 @@ resource "aws_instance" "backend" {
   tags = {
 
     Name = "${var.project_name}-${var.project_env}-backend"
+    Owner = "Blesson"
   }
 
   lifecycle {
